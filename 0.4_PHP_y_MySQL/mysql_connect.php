@@ -8,8 +8,14 @@ mysql_select_db("prueba_consola", $conexion);
 
 $resultados = mysql_query ("SELECT * FROM usuarios");
 
-$fila = mysql_fetch_object($resultados);
+// $fila = mysql_fetch_object($resultados);
 
-echo $fila ->nombre;
+// echo $fila ->nombre;
+
+while( $fila = mysql_fetch_object($resultados)) {
+
+    echo $fila->nombre;
+    echo "<br>";
+}
 
 ?>
