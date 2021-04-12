@@ -15,11 +15,11 @@
     <section class="articulos">
        
         <ul>
-            <li>1.- Lorem ipsum dolor sit amet.</li>
-            <li>2.- Consectetura dipisicing elit.</li>
-            <li>3.- Laborum iste illo optio perferendis praesentium recusandae.</li>
-            <li>4.- Quia quas ipsum aut possimus ullam voluptate placeat.</li>
-            <li>5.- Repellat tempora rerum?</li>
+            <?php foreach ($articulos as $articulo) : ?>
+
+                <li><?php echo $articulo['id'].'- '. $articulo['articulo']; ?></li>
+            
+            <?php endforeach; ?>
         </ul>
 
     </section>
@@ -28,12 +28,48 @@
 
         <ul>
 
-            <li class="disabled">&laquo;</li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">&raquo;</a></li>
+        <!-- Establecemos cuando estara el boton de atras desabilitado. -->
+            
+            <?php if($pagina == 1):?>
+
+                <li class="disabled">&laquo;</li>
+
+            <?php else: ?>
+
+                <li><a href="?pagina=<?php echo $pagina -1 ?>">&laquo;</a></li>
+
+            <?php endif; ?>
+
+            <?php
+
+            // Ejecutamos un bucle para mostrar las paginas
+
+            for ($i=1; $i<=$numeroPagina; $i++){
+
+                if($pagina == $i){
+
+                    echo "<li class='active'><a href='?pagina=$i'>$i</a></li>";
+                }
+
+                else{
+
+                    echo "<li><a href='?pagina=$i'>$i</a></li>";
+                }
+            }
+
+            ?>
+            <!-- Establecemos cuando estara el boton izquierdo desabilitado -->
+
+            <?php if($pagina == $numeroPagina):?>
+
+                <li class="disabled">&raquo;</li>
+
+            <?php else: ?>
+
+                <li><a href="?pagina=<?php echo $pagina +1 ?>">&raquo;</a></li>
+
+            <?php endif; ?>
+
         </ul>
     </section>
 </div>
